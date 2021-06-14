@@ -310,15 +310,17 @@ class DouYin(object):
 
 
 def save_make(log: logging.Logger, users: typing.Sequence[str]):
-    save.update(users)
+    if users:
+        save.update(users)
+        log.info(f'{len(users)} users sent to.')
     save.conn.close()
-    log.info(f'{len(users)} users sent to.')
 
 
 def save_find(log: logging.Logger, users: typing.Sequence[str]):
-    save.save_user(users)
+    if users:
+        save.save_user(users)
+        log.info(f'{len(users)} users collected.')
     save.conn.close()
-    log.info(f'{len(users)} users collected.')
 
 
 if __name__ == '__main__':
